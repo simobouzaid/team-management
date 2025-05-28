@@ -14,4 +14,7 @@ class task_user extends Model
     public function data_task(){
         return $this->belongsTo(task::class,'task_id');
     }
+    public function data_commment(){
+        return $this->hasMany(comment::class);
+    }
 }

@@ -10,5 +10,8 @@ class project extends Model
     public function data_user(){
         return $this->belongsTo(user::class,'owner_id');
     }
+    public function data_task(){
+        return $this->hasMany(task::class);
+    }
 
 }

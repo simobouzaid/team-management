@@ -17,4 +17,10 @@ class task extends Model
     public function  data_project(){
         return $this->belongsTo(project::class,'project_id');
     }
+    public function data_USER (){
+        return $this->belongsToMany(User::class);
+    }
+    public function data_comment(){
+        return $this->hasMany(Comment::class);
+    }
 }
