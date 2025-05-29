@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -16,6 +17,7 @@ route::get('/register', function () {
 Route::get('/home', function () {
     return view('home');
 });
+   /*les routes post  */
 route::post('/create_user', [UserController::class, 'create_user']);
 route::post('/login_user', [UserController::class, 'login_user']);
 
@@ -38,16 +40,22 @@ Route::middleware('auth')->group(
             return view('projects.show');
         });
         // les routes pour le partie de task
-        route::get('/create_task', function () {
-            return view('tasks.create');
-        });
+        route::get('/create_task/{id}', function ($id) {
+            return view('tasks.create',['id'=>$id]);
+        })->name('create_task');
+
         route::get('/edit_task', function () {
             return view('tasks.edit');
         });
-        /*les routes post  */
+
+     
         Route::get('/logout', function () {
             Auth::logout();
             return view('auth.login');
         });
+
+
+        // partie project 
+         Route::post('/create_project',[ProjectController::class ,'create_project']) ;  
     }
 );
