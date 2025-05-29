@@ -20,6 +20,7 @@ class UserController extends Controller
         'email'=>$request->email,
         'password'=>$request->password
       ]);
-      return $result ? redirect('home'):redirect('login')->with('errore','errore in email or password');
+      $user=Auth::user();
+      return $result ? view('home',compact('user')) : redirect('/login')->with('errore','errore in email or password');
     }
 }

@@ -21,4 +21,5 @@
     <input type="submit" value="login" name="login">
 
 </form>
+<a href="{{url('/register')}}">register</a>
 @endsection
