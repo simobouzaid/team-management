@@ -5,9 +5,6 @@
 
 @section('content')
 
-
-
-   <h3 class="text-3xl font-bold underline">
-   hello {{$user->name}}</h3>
+   <h3 class="text-3xl font-bold underline"> hello {{Auth::user()->name}} </h3>
 
 @endsection

@@ -1,22 +1,31 @@
-@php
-use App\Models\project;
 
-$user=project::where('owner_id',Auth::id())->get();
-@endphp
 @extends('layouts.app')
 
 @section('title')
-my project
+  my project
 @endsection
 @section('content')
-<h3 align="center"> projects</h3>
-@foreach ($user as $users )
-    
-<div> 
- project name : {{$users->name}} <br>
- discription : {{$users->description}} <br>
-<a href="{{route('create_task',$users->id)}}"> creat task </a>
-
-</div>
-@endforeach
+  <h3 align="center"> projects</h3>
+  <div class="flex justify-center ">
+    @foreach ($projects as $project)
+    <div class="w-60 p-4 m-2 border-2 border-b-emerald-600 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+    <h3 class="font-semibold text-gray-800 mb-2">Project Name: {{$project->name}}</h3>
+    <p class="text-sm text-gray-600 mb-4">Description: {{$project->description}}</p>
+    <div class="flex justify-around">
+      <div class="flex justify-end">
+      <a href="{{route('create_task', $project->id)}}"
+      class="w-20 border-2 border-emerald-600 rounded-2xl px-3 py-1 text-center text-sm font-medium text-emerald-600 hover:bg-emerald-600 hover:text-white transition-colors">
+      Create Task
+      </a>
+      </div>
+      <div class="flex justify-end">
+      <a href="{{url('/show_project', $project->id)}}"
+      class="w-20 border-2 border-emerald-600 rounded-2xl px-3 py-1 text-center text-sm font-medium text-emerald-600 hover:bg-emerald-600 hover:text-white transition-colors">
+      show task
+      </a>
+      </div>
+    </div>
+    </div>
+    @endforeach
+  </div>
 @endsection

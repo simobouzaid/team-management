@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('project_id');
             $table->string('title');
             $table->text('description');
-            $table->enum('status',['pending ','in_progress','completed']);
+            $table->enum('status',['pending','in_progress','completed']);
             $table->date('due_date');
             $table->timestamps();
         });

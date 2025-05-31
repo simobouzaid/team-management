@@ -1,52 +1,51 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
+use App\Models\task;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
 
 // les routes pour le partie auth
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-route::get('/register', function () {
-    return view('auth.register');
+Route::get('/login', [UserController::class,'login'])->name('login');
 
-});
+route::get('/register', [UserController::class,'register']);
 
-Route::get('/home', function () {
-    return view('home');
-});
-   /*les routes post  */
+/*les routes post  */
 route::post('/create_user', [UserController::class, 'create_user']);
 route::post('/login_user', [UserController::class, 'login_user']);
 
 // proteger les routes 
 Route::middleware('auth')->group(
     function () {
+        Route::get('/home', function () {
+            return view('home');
+        });
         /*   les routes get       */
         Route::get('/', function () {
-            return view('welcome');
+            return view('home');
         });
 
         // ler routes pour le partie projects
         route::get('/create_project', function () {
             return view('projects.create');
         });
-        route::get('/index_project', function () {
-            return view('projects.index');
-        });
-        route::get('/show_project', function () {
-            return view('projects.show');
-        });
+        route::get('/index_project', [ProjectController::class,'index']);
+        route::get('/show_project/{id}', [taskController::class,'tasks_project'])->name('show_project');
         // les routes pour le partie de task
         route::get('/create_task/{id}', function ($id) {
             return view('tasks.create',['id'=>$id]);
         })->name('create_task');
 
-        route::get('/edit_task', function () {
-            return view('tasks.edit');
-        });
+        route::post('/create_task', [TaskController::class,'createTask']);
+        route::put('/update_task', [TaskController::class,'updateTask']);
+ 
+ 
+ 
+        route::get('/edit_task/{id}', [TaskController::class,'edit']);
+ 
+        route::get('/mytask',[TaskController::class,'tasks_user']);
 
      
         Route::get('/logout', function () {
