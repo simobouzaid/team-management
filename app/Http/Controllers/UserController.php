@@ -43,9 +43,9 @@ public function search_user(Request $request,$id){
   $result=User::search($request->name)->get();
 return view('team.search',compact( 'result'));
 }
-public function create_team(){
+public function create_team($id){
 
-  return view('team.create');
+  return view('team.create',compact('id'));
 }
 
 

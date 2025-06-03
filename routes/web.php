@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Models\task;
@@ -37,27 +38,31 @@ Route::middleware('auth')->group(
         route::get('/create_task/{id}', function ($id) {
             return view('tasks.create', ['id' => $id]);
         })->name('create_task');
-
+      route::get('/edit_task/{id}',[TaskController::class,'edit']);
         route::post('/create_task', [TaskController::class, 'createTask']);
    
         route::put('/update_task', [TaskController::class, 'updateTask']);
 
 
-      route::get('/create_team',[UserController::class,'create_team']);
-        // route::get('/search/{id}',[UserController::class,'search_user'])->name('search');
-           //  route::get('/edit_task/{id}', [TaskController::class, 'edit'])->name('update_task');
+      route::get('/create_team/{id}',[UserController::class,'create_team']);
+  
 
         route::get('/mytask', [TaskController::class, 'tasks_user']);
 
-        route::get('/create_team/{id}', [TaskController::class, 'create_team']);
+    
 
         Route::get('/logout', function () {
             Auth::logout();
             return view('auth.login');
         });
 
-
+  route::get('/task_Completed/{id_task}',[homeController::class,'taskCompleted']);
+  route::get('/task_Inprogress/{id_task}',[homeController::class,'taskInprogress']);
+  route::get('/task_Pending/{id_task}',[homeController::class,'taskPending']);
         // partie project 
         Route::post('/create_project', [ProjectController::class, 'create_project']);
+
+
+        route::post('/createTeam',[ProjectController::class,'createTeam'])->name('createTeam');
     }
 );

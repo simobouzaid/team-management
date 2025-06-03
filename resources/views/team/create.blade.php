@@ -4,6 +4,9 @@
 @endsection
 
 @section('content')
+    <x-team.addTeam :id="$id"/>
 
-@livewire('creat-team');
+
+
+
 @endsection

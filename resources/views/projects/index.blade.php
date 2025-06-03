@@ -21,13 +21,13 @@
       <a href="{{route('show_project', $project->id)}}"
       class="w-20 border-2 border-emerald-600 rounded-2xl px-3 py-1 text-center text-sm font-medium text-emerald-600 hover:bg-emerald-600 hover:text-white transition-colors">
 
-       show project
+      show project
       </a>
       </div>
       <div class="flex justify-end">
-      <a href="{{url('/create_team')}}"
+      <a href="{{url('/create_team', $project->id)}}"
       class="w-20 border-2 border-emerald-600 rounded-2xl px-3 py-1 text-center text-sm font-medium text-emerald-600 hover:bg-emerald-600 hover:text-white transition-colors">
-         create team
+      create team
       </a>
       </div>
     </div>

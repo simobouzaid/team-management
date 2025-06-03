@@ -20,6 +20,11 @@ class task extends Model
     public function data_USER (){
         return $this->belongsToMany(User::class);
     }
+   public function Task_user(){
+    return $this->hasMany(task_user::class);
+   }
+
+
     public function data_comment(){
         return $this->hasMany(Comment::class);
     }

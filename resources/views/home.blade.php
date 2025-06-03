@@ -4,6 +4,12 @@
 
 
 @section('content')
+<div>
 
+<x-task-home />
+
+
+
+</div>
 
 @endsection
